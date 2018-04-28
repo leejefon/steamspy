@@ -20,5 +20,5 @@ Promise.all(requests).then(results => {
     return apps;
   }).reduce((prev, curr) => prev.concat(curr), []);
 
-  console.log(data);
+  console.log(JSON.stringify(data, null, 2));
 });
