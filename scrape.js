@@ -2,7 +2,7 @@ const requestify = require('requestify');
 const cheerio = require('cheerio');
 
 const steamSearchUrl = 'https://store.steampowered.com/search/?vrsupport=101%2C102%2C104';
-const totalPage = 123;
+const totalPage = 124;
 
 const requests = Array.from({ length: totalPage }, (v, x) => x + 1)
   .map(page => requestify.get(`${steamSearchUrl}&page=${page}`));
