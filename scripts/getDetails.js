@@ -1,8 +1,8 @@
 const requestify = require('requestify');
 const Datastore = require('nedb');
-const data = require('./apps.json');
+const data = require('../data/apps.json');
 
-const db = new Datastore({ filename: './appDetails.db' });
+const db = new Datastore({ filename: '../data/appDetails.db' });
 db.loadDatabase();
 
 const steamSpyUrl = 'http://steamspy.com/api.php?request=appdetails&appid=';

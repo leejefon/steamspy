@@ -8,6 +8,6 @@
     "requestify": "^0.2.5"
   },
   "scripts": {
-    "scrape": "node scrape > apps.json"
+    "scrape": "node scripts/scrape > apps.json"
   }
 }
