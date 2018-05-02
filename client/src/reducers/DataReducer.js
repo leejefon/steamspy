@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
-  games: {}
+  games: []
 });
 
 function dataReducer(state = initialState, action) {

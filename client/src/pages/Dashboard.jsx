@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import TagsPie from '../components/TagsPie';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class Dashboard extends Component {
     return (
       <div className="container">
         <h1>Steam Games</h1>
+        <TagsPie />
       </div>
     );
   }
@@ -24,8 +26,7 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    games: state.get('data').get('games').toJS(),
-    uiState: state.get('uiReducer').toJS()
+    games: state.get('data').get('games').toJS()
   };
 }
 

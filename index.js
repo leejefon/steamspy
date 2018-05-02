@@ -11,7 +11,7 @@ db.loadDatabase();
 class Games {
 	async find() {
 		return new Promise(resolve => {
-			db.find({}).exec((err, docs) => {
+			db.find().exec((err, docs) => {
 				resolve(docs);
 			});
 		});
