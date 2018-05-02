@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../actions';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    fetch('/games')
+      .then(response => response.json())
+      .then((data) => {
+        this.props.dispatch({
+          type: 'SET_GAMES',
+          data
+        });
+      });
+  }
+
   render() {
     return (
       <div className="container">
@@ -14,6 +24,7 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
+    games: state.get('data').get('games').toJS(),
     uiState: state.get('uiReducer').toJS()
   };
 }

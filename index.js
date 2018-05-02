@@ -1,14 +1,20 @@
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
+const Datastore = require('nedb');
 
 const app = express(feathers());
 app.configure(express.rest());
 
+const db = new Datastore({ filename: './data/appDetails.db' });
+db.loadDatabase();
+
 class Games {
 	async find() {
-		return {
-			name: "Jeff Lee"
-		};
+		return new Promise(resolve => {
+			db.find({}).exec((err, docs) => {
+				resolve(docs);
+			});
+		});
 	}
 }
 
