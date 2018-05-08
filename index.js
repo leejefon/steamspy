@@ -22,5 +22,5 @@ app.use('/', express.static('./public'));
 app.use('games', new Games());
 app.use(express.errorHandler());
 
-const server = app.listen(3030);
-server.on('listening', () => console.log('Server listening on http://localhost:3030'));
+const server = app.listen(process.env.PORT || 3030);
+server.on('listening', () => console.log(`Server listening on port ${process.env.PORT || 3030}`));
