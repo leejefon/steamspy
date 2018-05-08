@@ -15,7 +15,7 @@ for (let i = 0, j = data.length; i < j; i += requestChunkSize) {
     chunks.push(data.slice(i, i + requestChunkSize));
 }
 
-const startFromChunk = 138;
+const startFromChunk = 213;
 const requestChunks = chunks.map(chunk =>
   chunk.filter(app => app.id).map(app => requestify.get(`${steamSpyUrl}${app.id}`))
 ).splice(startFromChunk);
@@ -30,5 +30,5 @@ requestChunks.forEach((requests, i) => {
       console.log(`Error in ${i + startFromChunk}`, err);
       process.exit();
     });
-  }, i * 1500);
+  }, i * 5000);
 });
