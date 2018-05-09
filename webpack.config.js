@@ -20,9 +20,13 @@ module.exports = {
       loaders: ['babel-loader'],
       include: path.join(__dirname, 'client/src')
     }, {
-      test: /\.s?css$/,
+      test: /\.scss$/,
       loaders: ['style-loader', 'css-loader?module', 'sass-loader'],
       include: path.join(__dirname, 'client/src')
+    }, {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader'],
+      include: path.join(__dirname, 'node_modules') // Mainly for external libs
     }]
   },
   plugins: [
