@@ -30,7 +30,11 @@ class AppsTable extends Component {
   render() {
     const options = {
       paginationSize: 10,
-      sizePerPage: 50
+      sizePerPage: 50,
+      onRowClick(row) {
+        const url = 'https://store.steampowered.com/app/';
+        window.open(`${url}${row.appid}`, '_blank');
+      }
     };
 
     const data = this.props.games
@@ -39,17 +43,18 @@ class AppsTable extends Component {
       .map(game => Object.assign({}, game, { topTags: this.topThreeTags(game).join(', ') }));
 
     const title = this.state.filterByTag.value ? (
-      <h1><b>{this.state.filterByTag.value}</b> Games</h1>
+      <h2><b>{this.state.filterByTag.value}</b> Games</h2>
     ) : (
-      <h1>All Games</h1>
+      <h2>All Games</h2>
     );
 
     return (
       <div>
         {title}
         <TagCloud onClick={tag => this.updateTagFilter(tag)} />
-        <Table data={data} striped hover pagination search options={options}>
+        <Table data={data} striped hover pagination search options={options} bodyStyle={{ cursor: 'pointer' }}>
           <Header width="80" dataField="appid" isKey>App ID</Header>
+          <Header width="200" dataField="name" dataSort>Name</Header>
           <Header width="160" dataField="developer" dataSort>Developer</Header>
           <Header width="160" dataField="publisher" dataSort>Publisher</Header>
           <Header width="250" dataField="topTags" dataSort>Top Tags</Header>
