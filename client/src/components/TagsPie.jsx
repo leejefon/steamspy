@@ -53,19 +53,22 @@ class TagsPie extends Component {
     };
 
     return (
-      <Bar
-        data={dataset}
-        options={{
-          maintainAspectRatio: true,
-          scales: {
-            xAxes: [{
-              ticks: {
-                autoSkip: false
-              }
-            }]
-          }
-        }}
-      />
+      <div style={{ height: 480 }}>
+        <Bar
+          data={dataset}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              xAxes: [{
+                ticks: {
+                  autoSkip: false
+                }
+              }]
+            }
+          }}
+        />
+      </div>
     );
   }
 }
