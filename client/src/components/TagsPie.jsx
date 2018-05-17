@@ -13,7 +13,7 @@ class TagsPie extends Component {
       const topTag = iterator.next().value;
       const secondTopTag = iterator.next().value;
 
-      [topTag, secondTopTag].forEach((tag) => {
+      [topTag/*, secondTopTag */].forEach((tag) => {
         if (newData[tag]) {
           newData[tag] += 1;
         } else {
@@ -24,9 +24,15 @@ class TagsPie extends Component {
       return newData;
     }, {});
 
+    const result = {};
+    Object.keys(data).forEach((key) => {
+      if (!key) return;
+      if (data[key] > 1) result[key] = data[key];
+    });
+
     return {
-      labels: Object.keys(data),
-      data: Object.values(data)
+      labels: Object.keys(result),
+      data: Object.values(result)
     };
   }
 
@@ -37,7 +43,7 @@ class TagsPie extends Component {
       labels,
       datasets: [{
         data,
-        label: 'Tags',
+        label: '# of Games',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
@@ -49,10 +55,15 @@ class TagsPie extends Component {
     return (
       <Bar
         data={dataset}
-        width={100}
-        height={50}
         options={{
-          maintainAspectRatio: false
+          maintainAspectRatio: true,
+          scales: {
+            xAxes: [{
+              ticks: {
+                autoSkip: false
+              }
+            }]
+          }
         }}
       />
     );
