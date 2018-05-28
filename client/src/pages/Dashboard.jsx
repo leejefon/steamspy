@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TagsPie from '../components/TagsPie';
+import TagsBar from '../components/TagsBar';
 import Table from '../components/AppsTable';
 
 class Dashboard extends Component {
@@ -19,7 +19,7 @@ class Dashboard extends Component {
     return (
       <div className="container">
         <h1>Steam Games</h1>
-        <TagsPie />
+        <TagsBar />
         <Table />
       </div>
     );

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import * as Utils from '../utils';
 
-class TagsPie extends Component {
+class TagsBar extends Component {
   reduceTags() {
     const data = this.props.games.reduce((prev, curr) => {
       const newData = Object.assign({}, prev);
@@ -79,4 +79,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TagsPie);
+export default connect(mapStateToProps)(TagsBar);

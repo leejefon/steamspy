@@ -5,6 +5,8 @@ import 'react-bootstrap-table/css/react-bootstrap-table.css';
 import TagCloud from '../components/TagCloud';
 import * as Utils from '../utils';
 
+import '../css/custom.scss';
+
 class AppsTable extends Component {
   constructor() {
     super();
@@ -29,12 +31,18 @@ class AppsTable extends Component {
 
   render() {
     const options = {
+      defaultSortName: 'score_rank',
+      defaultSortOrder: 'desc',
       paginationSize: 10,
-      sizePerPage: 50,
-      onRowClick(row) {
-        const url = 'https://store.steampowered.com/app/';
-        window.open(`${url}${row.appid}`, '_blank');
-      }
+      sizePerPage: 50
+    };
+
+    const selectRowProp = {
+      mode: 'checkbox',
+      bgColor: 'pink',
+      hideSelectColumn: true,
+      clickToSelect: true,
+      showOnlySelected: true
     };
 
     const data = this.props.games
@@ -48,13 +56,20 @@ class AppsTable extends Component {
       <h2>All Games</h2>
     );
 
+    const nameFormatter = (cell, row) => (
+      <a href={`https://store.steampowered.com/app/${row.appid}`} target="_blank">{cell}</a>
+    );
+
     return (
       <div>
         {title}
         <TagCloud onClick={tag => this.updateTagFilter(tag)} />
-        <Table data={data} striped hover pagination search options={options} bodyStyle={{ cursor: 'pointer' }}>
+        <div style={{ margin: 30 }} />
+        <Table data={data} striped hover pagination search options={options} bodyStyle={{ cursor: 'pointer' }} selectRow={selectRowProp}>
           <Header width="80" dataField="appid" isKey>App ID</Header>
-          <Header width="200" dataField="name" dataSort>Name</Header>
+          <Header width="200" dataField="name" dataFormat={nameFormatter} dataSort>Name</Header>
+          <Header width="200">Empty Col Hack for Fixed Col</Header>
+
           <Header width="160" dataField="developer" dataSort>Developer</Header>
           <Header width="160" dataField="publisher" dataSort>Publisher</Header>
           <Header width="250" dataField="topTags" dataSort>Top Tags</Header>
