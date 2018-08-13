@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Table from 'react-bootstrap/lib/Table';
 import { connect } from 'react-redux';
+import TrendChart from './TrendChart';
 
 class StatsTable extends Component {
   render() {
@@ -17,6 +18,7 @@ class StatsTable extends Component {
         </Modal.Header>
 
         <Modal.Body>
+          <TrendChart />
           <Table striped bordered hover>
             <thead>
               <tr>

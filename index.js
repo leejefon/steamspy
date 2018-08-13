@@ -1,6 +1,12 @@
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
+
+const MongoClient = require('mongodb').MongoClient;
 const Datastore = require('nedb');
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
 
 const app = express(feathers());
 app.configure(express.rest());
@@ -36,8 +42,27 @@ class Games {
 	}
 }
 
+class HourlyStats {
+	async get(appid) {
+		return new Promise((resolve) => {
+			const i = process.env.MONGODB_URI.lastIndexOf('/');
+			const connStr = process.env.MONGODB_URI.slice(0, i);
+			const dbName = process.env.MONGODB_URI.slice(i + 1);
+
+			MongoClient.connect(connStr, { useNewUrlParser: true })
+			  .then((client) => {
+			    const model = client.db(dbName).collection('hourly_stats');
+					model.find({ appid }).toArray((err, result) => {
+						resolve(result);
+					});
+			  }).catch(error => console.error(error));
+		});
+	}
+}
+
 app.use('/', express.static('./public'));
 app.use('games', new Games());
+app.use('hourlyStats', new HourlyStats());
 app.use(express.errorHandler());
 
 const server = app.listen(process.env.PORT || 3030);
