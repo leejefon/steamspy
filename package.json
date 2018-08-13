@@ -8,7 +8,10 @@
     "chart.js": "^2.7.2",
     "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.5",
+    "dotenv": "^6.0.0",
+    "feathers-mongodb": "^3.3.0",
     "immutable": "^3.8.2",
+    "mongodb": "^3.1.1",
     "nedb": "^1.8.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
@@ -45,6 +48,7 @@
   },
   "scripts": {
     "scrape": "node scripts/scrape > apps.json",
+    "get-hourly-stats": "node scripts/getHourlyStats",
     "start": "node index",
     "dev": "webpack --progress --colors --watch",
     "build": "webpack --progress --colors"
