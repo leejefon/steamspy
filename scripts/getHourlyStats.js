@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = feathers();
-app.use('messages', service({
+app.use('hourlyStats', service({
   paginate: {
     default: 2,
     max: 4
@@ -20,12 +20,11 @@ app.use('messages', service({
 }));
 
 const i = process.env.MONGODB_URI.lastIndexOf('/');
-const connStr = process.env.MONGODB_URI.slice(0, i);
 const dbName = process.env.MONGODB_URI.slice(i + 1);
 
-MongoClient.connect(connStr, { useNewUrlParser: true })
+MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((client) => {
-    app.service('messages').Model = client.db(dbName).collection('hourly_stats');
+    app.service('hourlyStats').Model = client.db(dbName).collection('hourly_stats');
   }).catch(error => console.error(error));
 
 const apps = require('../data/apps.json');
@@ -87,12 +86,12 @@ requests.forEach((req, i) => {
         }
       });
       console.log(stats);
-      app.service('messages').create(stats).then(message => console.log('Saved ', stats.name));
+      app.service('hourlyStats').create(stats).then(message => console.log('Saved ', stats.name));
     });
   }, 100 * i);
 });
 
-// auto exit after 30 min
+// auto exit after 10 min
 setTimeout(() => {
   process.exit();
-}, 30 * 60 * 1000);
+}, 10 * 60 * 1000);

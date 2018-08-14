@@ -46,10 +46,9 @@ class HourlyStats {
 	async get(appid) {
 		return new Promise((resolve) => {
 			const i = process.env.MONGODB_URI.lastIndexOf('/');
-			const connStr = process.env.MONGODB_URI.slice(0, i);
 			const dbName = process.env.MONGODB_URI.slice(i + 1);
 
-			MongoClient.connect(connStr, { useNewUrlParser: true })
+			MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 			  .then((client) => {
 			    const model = client.db(dbName).collection('hourly_stats');
 					model.find({ appid }).toArray((err, result) => {
