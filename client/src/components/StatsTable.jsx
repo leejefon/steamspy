@@ -34,7 +34,7 @@ class StatsTable extends Component {
             </thead>
 
             <tbody>
-              {app.stats.map(stat => (
+              {(app.stats || []).map(stat => (
                 <tr key={Math.random()}>
                   <td>{stat.month}</td>
                   <td>{stat.avgPlayers}</td>
