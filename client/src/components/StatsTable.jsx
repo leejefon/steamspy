@@ -19,6 +19,9 @@ class StatsTable extends Component {
 
         <Modal.Body>
           <TrendChart />
+
+          <br />
+
           <Table striped bordered hover>
             <thead>
               <tr>

@@ -82,7 +82,9 @@ class AppsTable extends Component {
       <div>
         {title}
         <TagCloud onClick={tag => this.updateTagFilter(tag)} />
+
         <div style={{ margin: 30 }} />
+
         <Table className={styles.appsTable} data={data} striped hover pagination search options={options} bodyStyle={{ cursor: 'pointer' }} selectRow={selectRowProp}>
           <Header width="280" dataField="appid" isKey>App ID</Header>
           <Header width="40" dataField="name" dataFormat={nameFormatter} dataSort>Name</Header>

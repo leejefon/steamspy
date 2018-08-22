@@ -51,7 +51,7 @@ class HourlyStats {
 			MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 			  .then((client) => {
 			    const model = client.db(dbName).collection('hourly_stats');
-					model.find({ appid }).toArray((err, result) => {
+					model.find({ appid }).sort({ timestamp: 1 }).toArray((err, result) => {
 						resolve(result);
 					});
 			  }).catch(error => console.error(error));
