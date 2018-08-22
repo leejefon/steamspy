@@ -43,7 +43,7 @@ class AppsTable extends Component {
 
   render() {
     const options = {
-      defaultSortName: 'score_rank',
+      defaultSortName: 'average_forever',
       defaultSortOrder: 'desc',
       paginationSize: 10,
       sizePerPage: 50
