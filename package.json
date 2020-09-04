@@ -12,7 +12,7 @@
     "feathers-mongodb": "^3.3.0",
     "immutable": "^3.8.2",
     "moment": "^2.22.2",
-    "mongodb": "^3.1.1",
+    "mongodb": "^3.1.13",
     "nedb": "^1.8.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
