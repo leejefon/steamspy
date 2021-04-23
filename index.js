@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const Datastore = require('nedb');
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
+  require('dotenv').config();
 }
 
 const app = express(feathers());
@@ -18,7 +18,7 @@ const playerStatsDb = new Datastore({ filename: './data/playerCounts.db' });
 playerStatsDb.loadDatabase();
 
 class Games {
-	async find() {
+	find() {
 		const appsP = new Promise((resolve) => {
 			appsDb.find().exec((err, docs) => {
 				resolve(docs);
@@ -43,7 +43,7 @@ class Games {
 }
 
 class HourlyStats {
-	async get(appid) {
+	get(appid) {
 		return new Promise((resolve) => {
 			const i = process.env.MONGODB_URI.lastIndexOf('/');
 			const dbName = process.env.MONGODB_URI.slice(i + 1);
