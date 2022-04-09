@@ -11,7 +11,7 @@
     "dotenv": "^8.2.0",
     "feathers-mongodb": "^3.3.0",
     "immutable": "^3.8.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "mongodb": "^3.6.6",
     "nedb": "^1.8.0",
     "prop-types": "^15.6.1",
